@@ -3,7 +3,7 @@
 Toutes les modifications notables de ce projet sont consignées ici.
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
-## [0.2.0]
+## [0.2.0] — 2026-07-01
 
 ### Ajouté
 
@@ -18,7 +18,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 - Utilitaire `src/lib/readTextFile.ts` (lecture texte d'un `File` avec gestion d'erreur).
 - Utilitaire `src/lib/cx.ts` (concaténation de classes conditionnelles).
 - Token de couleur `--color-success` (états positifs / badges), décliné clair/sombre.
-- `CLAUDE.md` : guide pour agents IA (stack, conventions, bonnes pratiques).
+- Documentation agents `AGENTS.md` (stack, conventions, bonnes pratiques) ;
+  `CLAUDE.md` et `.github/copilot-instructions.md` ne sont que des renvois vers
+  elle. Références Claude Code et garde-fou `--no-verify`.
+- **Hooks Git versionnés** (`.githooks/`, activés automatiquement par le script npm
+  `prepare` à chaque `npm install`) : `commit-msg` (sujet conforme Conventional
+  Commits), `pre-commit` (`npm run check`) et `pre-push` (`test:e2e` +
+  `build-storybook`, parité CI).
 - Dependabot : `.github/dependabot.yml` (npm + github-actions) et workflow
   `dependabot-auto-merge.yml`.
 
@@ -31,6 +37,7 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
   `sr-only` dédiée ; `Input` et `Textarea` exposent leur message d'erreur en
   `role="alert"`.
 - `src/test/setup.ts` : garde `typeof window` pour les tests en environnement `node`.
+- **Fins de ligne normalisées en LF** via `.gitattributes` (`eol=lf`).
 
 ## [0.1.0] — Template initial
 

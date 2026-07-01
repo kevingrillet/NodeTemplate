@@ -1,7 +1,7 @@
 {
   "name": "node-template",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Template de démarrage React + TypeScript + Vite : thèmes runtime, i18n FR/EN, PWA, tests (Vitest + Playwright), Storybook, ESLint/Prettier, CI/CD GitHub Actions.",
   "license": "MIT",
