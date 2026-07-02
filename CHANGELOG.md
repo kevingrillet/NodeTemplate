@@ -3,6 +3,33 @@
 Toutes les modifications notables de ce projet sont consignées ici.
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.3.0] — 2026-07-02
+
+### Ajouté
+
+- **Couverture de tests en CI** : reporters de couverture (`text`, `text-summary`,
+  `json-summary`, `lcov`) et seuils dans `vite.config.ts`
+  (lines/functions/statements ≥ 80 %, branches ≥ 75 %) — sous la couverture réelle,
+  en marge de sécurité contre les régressions. Le workflow `ci.yml` lance
+  `test:cov`, publie un tableau de couverture dans le résumé du job (`GITHUB_STEP_SUMMARY`)
+  et archive le rapport `coverage/` en artefact.
+- **Tests d'accessibilité unitaires** (Vitest + Testing Library) pour les composants
+  d'en-tête : `ThemeToggle.a11y.test.tsx`, `ThemeSelector.a11y.test.tsx`,
+  `LanguageSwitcher.a11y.test.tsx`. Ils vérifient rôles/nom accessible, attributs
+  ARIA, application de `data-theme` / classe `dark`, persistance `localStorage` et
+  navigation clavier. Helper réutilisable `src/test/a11y.tsx` (`renderA11y`, `htmlEl`)
+  qui pose le STYLE de test a11y du socle.
+- **Stories Storybook** pour les composants composites d'en-tête (section `App/`) :
+  `ThemeSelector`, `ThemeToggle`, `LanguageSwitcher`.
+- **Accessibilité automatisée e2e** : `@axe-core/playwright` intégré au smoke
+  `tests/smoke.spec.ts` (scans WCAG 2.x A/AA en modes clair ET sombre, échec sur
+  violations `serious`/`critical`) — pattern réutilisable via
+  `scanSeriousA11yViolations`.
+- **Lighthouse CI** : workflow `.github/workflows/lighthouse.yml` et budgets
+  `lighthouserc.json` (`@lhci/cli` en `staticDistDir`, 3 runs, preset desktop).
+  Accessibilité bloquante (`error` ≥ 0.9) ; performance / best-practices / SEO en
+  `warn` (≥ 0.9) pour éviter une CI fragile.
+
 ## [0.2.0] — 2026-07-01
 
 ### Ajouté
